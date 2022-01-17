@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-RUN apt update && apt install -y gnupg openssh-client git && apt upgrade -y
+RUN apt update && apt install -y gnupg openssh-client git jq && apt upgrade -y
 RUN sed -i "s/#   StrictHostKeyChecking ask/StrictHostKeyChecking no/" /etc/ssh/ssh_config && \
     echo "Host *" >> /etc/ssh/ssh_config && \
     export "$(sed -n "/UBUNTU_CODENAME.*/p" /etc/os-release)" && \
