@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:mantic-20230912
 ARG DEBIAN_FRONTEND noninteractive
 
 RUN apt update -y && apt install -y gnupg openssh-client git jq curl && apt upgrade -y
