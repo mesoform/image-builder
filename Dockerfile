@@ -1,6 +1,7 @@
-FROM ubuntu:latest
+FROM ubuntu:20.04
+ARG DEBIAN_FRONTEND noninteractive
 
-RUN apt update && apt install -y gnupg openssh-client git jq curl && apt upgrade -y
+RUN apt update -y && apt install -y gnupg openssh-client git jq curl && apt upgrade -y
 RUN sed -i "s/#   StrictHostKeyChecking ask/StrictHostKeyChecking no/" /etc/ssh/ssh_config && \
     echo "Host *" >> /etc/ssh/ssh_config && \
     export "$(sed -n "/UBUNTU_CODENAME.*/p" /etc/os-release)" && \
@@ -11,6 +12,6 @@ RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
     export "$(sed -n "/UBUNTU_CODENAME.*/p" /etc/os-release)" && \
     echo "deb [arch=amd64] https://apt.releases.hashicorp.com $UBUNTU_CODENAME main" >> /etc/apt/sources.list
 
-RUN apt update && apt install -y ansible packer
+RUN apt update -y && apt install -y ansible packer
 
 CMD [""]
