@@ -29,5 +29,6 @@ RUN curl -fsSL https://get.pulumi.com | sh
 
 ENV PATH="$PATH:/root/.pulumi/bin"
 
+RUN apt install python3-pip -y && pip install poetry --break-system-packages
 
 CMD [""]
