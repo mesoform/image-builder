@@ -1,4 +1,4 @@
-FROM ubuntu:lunar
+FROM ubuntu:jammy
 ARG DEBIAN_FRONTEND=noninteractive
 ARG ORAS_VERSION=1.1.0
 
