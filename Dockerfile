@@ -20,13 +20,13 @@ RUN sed -i 's/#\s*StrictHostKeyChecking ask/StrictHostKeyChecking no/' /etc/ssh/
     echo -e "\nHost *\n    StrictHostKeyChecking no\n" >> /etc/ssh/ssh_config
 
 # Ansible PPA setup
-RUN source /etc/os-release && \
+RUN . /etc/os-release && \
     echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu ${UBUNTU_CODENAME} main" > /etc/apt/sources.list.d/ansible.list && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
 
 # HashiCorp repo setup (Packer/Terraform)
 RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg && \
-    source /etc/os-release && \
+    . /etc/os-release && \
     echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com ${UBUNTU_CODENAME} main" > /etc/apt/sources.list.d/hashicorp.list
 
 # Google Cloud SDK repo setup
